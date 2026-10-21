@@ -1,0 +1,13 @@
+{
+  "name": "tewandin-data",
+  "private": true,
+  "description": "Daneyên tewandina lêkerên kurmancî ji Wîkîferhengê",
+  "scripts": {
+    "fetch": "node scripts/fetch-wiki.mjs tewandin-wiki.json && node scripts/import-wiki.mjs tewandin-wiki.json && node scripts/build-data.mjs",
+    "data": "node scripts/build-data.mjs",
+    "test": "node scripts/test-extract.mjs"
+  },
+  "dependencies": {
+    "linkedom": "0.18.14"
+  }
+}
