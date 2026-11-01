@@ -5,6 +5,7 @@ Tabloyên tewandina lêkerên kurmancî, ji bo sepana **Tewandin**.
 - `src/data/verbs.json` — hemû lêker (forma ku sepan dixwîne)
 - `src/data/manifest.json` — guhertoya daneyan; sepan bi vê dizane ka daneyên nû hene
 - `scripts/data-wikiferheng-full.txt` — heman dane, bi formeke xwendbar
+- `scripts/defs-ferheng.tsv` — pênaseyên lêkerên ku rûpela tewandinê pênase nîne, ji daneyên [Ferheng](https://github.com/lusineweb/ferheng-data)ê (`scripts/defs-from-ferheng.mjs`)
 
 Her meh GitHub Actions daneyan ji [Wîkîferhengê](https://ku.wiktionary.org/wiki/Kategor%C3%AE:Tewandin:l%C3%AAker_(kurmanc%C3%AE)) nû dike (`.github/workflows/update-verbs.yml`).
 
