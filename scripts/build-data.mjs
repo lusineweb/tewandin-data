@@ -37,6 +37,18 @@ for (const f of files) {
   }
 }
 
+// definitions missing on the conjugation page come from the Ferheng data (scripts/defs-from-ferheng.mjs)
+const extra = join(root, 'scripts', 'defs-ferheng.tsv');
+if (existsSync(extra)) {
+  let filled = 0;
+  for (const line of readFileSync(extra, 'utf8').split('\n')) {
+    const [inf, def] = line.replace(/\r$/, '').split('\t');
+    const v = inf && byInf.get(inf.normalize('NFC'));
+    if (v && !v.def && def) { v.def = def.normalize('NFC'); filled++; }
+  }
+  console.log(`${filled} pênase ji defs-ferheng.tsv`);
+}
+
 const REQUIRED = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '11', '12'];
 let verbs = [...byInf.values()].filter(v => {
   const missing = REQUIRED.filter(k => !v.t[k] || v.t[k].a.some(x => !x));
