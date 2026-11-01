@@ -31,19 +31,21 @@ jobs:
       - name: Rebuild data
         run: |
           node scripts/import-wiki.mjs "$RUNNER_TEMP/tewandin-wiki.json"
+          git clone --depth 1 https://github.com/lusineweb/ferheng-data "$RUNNER_TEMP/ferheng-data"
+          node scripts/defs-from-ferheng.mjs "$RUNNER_TEMP/ferheng-data"
           mkdir -p src/data
           npm run data
       - name: Test
         run: node scripts/test-extract.mjs
       - name: Commit if changed
         run: |
-          if [ -z "$(git status --porcelain -- src/data scripts/data-wikiferheng-full.txt)" ]; then
+          if [ -z "$(git status --porcelain -- src/data scripts/data-wikiferheng-full.txt scripts/defs-ferheng.tsv)" ]; then
             echo "Daneyan guhertin tune."
             exit 0
           fi
           git config user.name "tewandin-bot"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add src/data scripts/data-wikiferheng-full.txt
+          git add src/data scripts/data-wikiferheng-full.txt scripts/defs-ferheng.tsv
           git commit -m "Daneyên lêkeran: $(node -p "require('./src/data/manifest.json').count") lêker ($(date -u +%Y-%m-%d))"
           git push
 
